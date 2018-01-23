@@ -15,17 +15,16 @@
 #include "conio.h"
 
 using namespace std;
-bool gameOver;
+bool gameOver, xlm, xrm, yum, ydm;
 const int width = 50, height = 11;
-int x, y;
-enum eDirection {STOP = 0, UP, DOWN, LEFT, RIGHT};
-eDirection dir;
+int enemys[100];
+int x, y, round, enmyCount;
 
 void Setup() {
 
 	x = 5;
 	y = height/2;
-	dir = STOP;
+	round = 1;
 	gameOver = false;
 
 }
@@ -33,11 +32,11 @@ void Setup() {
 void Draw() {
 
 	system ("CLS");
-	for(int i = 0; i < height; i++) {
+	for(int i = 0; i <= height; i++) {
 
-		for(int j = 0; j < width; j++) {
+		for(int j = 0; j <= width; j++) {
 
-			if (i == 0 || j == 0 || i == (height-1) || j == (width-1))
+			if (i == 0 || j == 0 || i == (height) || j == (width))
 				cout << "# ";
 			else if (i == y && j == x)
 				cout << "E=";
@@ -46,54 +45,107 @@ void Draw() {
 		}
 		cout << endl;
 	}
-	cout << "x position: " << x << " y position: " << y << endl;
+
 }
 
 void Logic() {
 
-	switch(dir) {
+	xlm = true;
+	xrm = true;
+	ydm = true;
+	yum = true;
 
-		case STOP:
-			break;
-		case UP:
-			y--;
-			break;
-		case DOWN:
-			y++;
-			break;
-		case RIGHT:
-			x++;
-			break;
-		case LEFT:
-			x--;
-			break;
+	// Barriers blocking further movement...
+	if (x <= 1) {
+		xlm = false;
+		x = 1;
+	}
+	if (x >= width-1) {
+		xrm = false;
+		x = width-1;
+	}
+	if (y <= 1) {
+		yum = false;
+		y = 1;
+	}
+	if (y >= height-1) {
+		ydm = false;
+		y = height-1;
 	}
 
-	if (x == 0 || y == 0 || x == width-1 || y == height-1)
-		gameOver = true;
+	// This determines the end of a round...
+
+
+	// This determines the number of enemies based on the round...
+	switch (round) {
+		case 1:
+			enmyCount = 10;
+			break;
+		case 2:
+			enmyCount = 20;
+			break;
+		case 3:
+			enmyCount = 30;
+			break;
+		case 4:
+			enmyCount = 40;
+			break;
+		case 5:
+			enmyCount = 50;
+			break;
+		case 6:
+			enmyCount = 60;
+			break;
+		case 7:
+			enmyCount = 70;
+			break;
+		case 8:
+			enmyCount = 80;
+			break;
+		case 9:
+			enmyCount = 90;
+			break;
+		case 10:
+			enmyCount = 100;
+			break;
+	}
 }
 
 void Input() {
 
-	if (_kbhit()) {
-			switch (_getch()) {
-				case 'a':
-					dir = LEFT;
-					break;
-				case 'w':
-					dir = UP;
-					break;
-				case 's':
-					dir = DOWN;
-					break;
-				case 'd':
-					dir = RIGHT;
-					break;
-				case 'x':
-					gameOver = true;
-					break;
-			}
+	// Assigning the correct output to input...
+	while (_kbhit()) {
+		switch (_getch()) {
+			case 'a':
+				if (xlm)
+					x -= 2;
+				break;
+			case 'd':
+				if (xrm)
+					x += 2;
+				break;
+			case 's':
+				if (ydm)
+					y++;
+				break;
+			case 'w':
+				if (yum)
+					y--;
+				break;
+			case 'x':
+				gameOver = true;
+				break;
 		}
+	}
+
+
+}
+
+void Enemies() {
+
+	for(int i = 0; i < enmyCount) {
+
+	}
 
 }
 
@@ -101,9 +153,8 @@ int main() {
 
 	Setup();
 	do {
-		Draw();
-		Sleep(25);
 		Input();
+		Draw();
 		Logic();
 
 	} while(!gameOver);
