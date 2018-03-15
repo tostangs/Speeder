@@ -1,6 +1,6 @@
 ﻿  Speeder.cpp
-c:\users\trevor\source\repos\speeder\speeder\speeder.cpp(96): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-c:\users\trevor\source\repos\speeder\speeder\speeder.cpp(100): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-c:\users\trevor\source\repos\speeder\speeder\speeder.cpp(105): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-c:\users\trevor\source\repos\speeder\speeder\speeder.cpp(106): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\trevor\source\repos\speeder\speeder\speeder.cpp(126): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\trevor\source\repos\speeder\speeder\speeder.cpp(136): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\trevor\source\repos\speeder\speeder\speeder.cpp(145): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\trevor\source\repos\speeder\speeder\speeder.cpp(146): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
   Speeder.vcxproj -> C:\Users\Trevor\source\repos\Speeder\Debug\Speeder.exe
